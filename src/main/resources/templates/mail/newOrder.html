@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Spring boot email template with Thymeleaf</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- use the font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+<p th:text="${'Hello ' + name}"></p>
+
+<p>
+    You have been successfully placed your order on <b>Karma Shop</b>
+</p>
+
+<h2>
+    ORDER INFO:
+</h2>
+<h3>CONTACT DETAILS</h3>
+<p th:text="'COUNTRY: '+${country}"></p>
+<p th:text="'CITY:    '+${city}"></p>
+<p th:text="'STREET:  '+${street}"></p>
+<p th:text="'NUMBER:  '+${number}"></p>
+<p th:text="'PHONE:   '+${phone}"></p>
+
+
+<h3>PRODUCT DETAILS</h3>
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+
+    </tr>
+    <tr th:each="prod : ${products}">
+        <td th:text="${prod.product.name}"></td>
+        <td th:text="${prod.product.price}"></td>
+        <td th:text="${prod.quantity}"></td>
+        <td th:text="${prod.quantity}*${prod.product.price}"></td>
+    </tr>
+</table>
+
+<h2 th:text="'TOTAL AMOUNT: '+${total}"></h2>
+
+<p>
+    Regards, <br />
+    <em th:text="${sign}"></em>
+
+</p>
+</body>
+</html>
